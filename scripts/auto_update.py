@@ -6,9 +6,6 @@ import datetime
 from git import Repo
 
 
-test = "test1234"
-test2 = "test2 qwexsadsdqwe"
-
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
 now = datetime.datetime.now()
@@ -56,7 +53,7 @@ if not on_master:
     repo.git.merge(master_branch)
 
 if save_stash:
-    repo.git.stash.pop()    
+    repo.git.stash('pop')    
 
 
 
