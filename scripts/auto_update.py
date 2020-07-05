@@ -5,7 +5,6 @@ import os
 import datetime
 from git import Repo
 
-test = "The script has been updated"
 
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
