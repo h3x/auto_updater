@@ -5,7 +5,7 @@ import os
 import datetime
 from git import Repo
 
-test = "This is some code updates steve has made"
+test = "Ive updated this aswell. This is some code updates steve has made"
 
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
