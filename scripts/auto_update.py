@@ -39,15 +39,15 @@ repo = Repo(root_dir)
 master_branch = config.get('GLOBAL', 'master_branch', fallback='master')
 current_branch = repo.active_branch
 
+
+print(f"Current branch: {current_branch}\nMaster_branch: {master_branch}\n=={current_branch.name == master_branch}")
 if not current_branch.name == master_branch:
     repo.git.stash('save')
     repo.git.checkout(master_branch)
 
-    repo.remotes.origin.pull() 
+repo.remotes.origin.pull()
 
-    repo.git.checkout(current_branch.name)
-
-
+print(f"Current branch: {current_branch}\nMaster_branch: {master_branch}\n=={current_branch.name == master_branch}")
 
 
 print( now - datetime.timedelta(days=int(update_every_x_days)))
