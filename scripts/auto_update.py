@@ -38,21 +38,24 @@ if not config.get('USER', 'auto_update', fallback=False) or \
 repo = Repo(root_dir)
 master_branch = config.get('GLOBAL', 'master_branch', fallback='master')
 current_branch = repo.active_branch
+on_master = current_branch.name == master_branch
 
 head = repo.head.commit.tree
-if not not repo.git.diff(head): 
+save_stash = not not repo.git.diff(head)
+
+if save_stash: 
     repo.git.stash('save')
 
-if not current_branch.name == master_branch:
+if not on_master:
     repo.git.checkout(master_branch)
 
 repo.remotes.origin.pull() 
 
-if not current_branch.name == master_branch:
+if not on_master:
     repo.git.checkout(current_branch.name)
     repo.git.merge(master_branch)
 
-if not not repo.git.diff(head):
+if save_stash:
     repo.git.stash.pop()    
 
 
