@@ -32,6 +32,7 @@ if not config.get('USER', 'auto_update', fallback=False) or \
     datetime.datetime.strptime(last_update,timeformat) > now - datetime.timedelta(days=int(update_every_x_days)):
     exit()
 
+print("Scripts Updating")
 repo = Repo(root_dir)
 master_branch = config.get('GLOBAL', 'master_branch', fallback='master')
 current_branch = repo.active_branch
@@ -57,20 +58,8 @@ if save_stash:
 
 
 
-
-print( now - datetime.timedelta(days=int(update_every_x_days)))
-print(last_update)
-
-
-
-
-
-
-
-
-
-
-
 config.set('USER', 'last_update', now.strftime(timeformat))
 with open(f"{root_dir}/.user.conf", 'w') as config_file:
     config.write(config_file)
+
+print("Scripts updated")
