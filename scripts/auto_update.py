@@ -5,7 +5,6 @@ import os
 import datetime
 from git import Repo
 
-test = "This is some update steve has made"
 
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
@@ -16,7 +15,7 @@ if not os.path.exists(f"{root_dir}/.user.conf"):
     with open(f"{root_dir}/.user.conf", 'w') as user_conf:
         user_conf.write('[USER]\n')
         user_conf.write('auto_update = True\n')
-        user_conf.write('update_every_x_days = 1')
+        user_conf.write('update_every_x_days = 1')  
 
 if not os.path.exists(f"{root_dir}/.gitignore"):
     with open(f"{root_dir}/.gitignore", 'w') as gitignore:
