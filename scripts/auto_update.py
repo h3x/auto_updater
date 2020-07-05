@@ -7,7 +7,8 @@ from git import Repo
 
 
 test = "test1234"
-test2 = "test2
+test2 = "test2 update from master"
+
 
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
