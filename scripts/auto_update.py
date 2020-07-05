@@ -7,7 +7,7 @@ from git import Repo
 
 
 test = "test1234"
-test2 = "test2
+test2 = "test2"
 
 config = configparser.ConfigParser()
 root_dir = os.getcwd() + '/..'
@@ -39,15 +39,23 @@ repo = Repo(root_dir)
 master_branch = config.get('GLOBAL', 'master_branch', fallback='master')
 current_branch = repo.active_branch
 
-
-print(f"Current branch: {current_branch}\nMaster_branch: {master_branch}\n=={current_branch.name == master_branch}")
-if not current_branch.name == master_branch:
+head = repo.head.commit.tree
+if not not repo.git.diff(head): 
     repo.git.stash('save')
+
+if not current_branch.name == master_branch:
     repo.git.checkout(master_branch)
 
-repo.remotes.origin.pull()
+repo.remotes.origin.pull() 
 
-print(f"Current branch: {current_branch}\nMaster_branch: {master_branch}\n=={current_branch.name == master_branch}")
+if not current_branch.name == master_branch:
+    repo.git.checkout(current_branch.name)
+    repo.git.merge(master_branch)
+
+if not not repo.git.diff(head):
+    repo.git.stash.pop()    
+
+
 
 
 print( now - datetime.timedelta(days=int(update_every_x_days)))
